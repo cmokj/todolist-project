@@ -29,7 +29,7 @@ class App extends Component {
     })
     return (
       <div className="App">
-        <h1>任务</h1>
+        <h2>任务</h2>
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo} />
         </div>

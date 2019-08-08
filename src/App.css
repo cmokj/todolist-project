@@ -1,2 +1,31 @@
-.App {
+*{
+    margin: 0;
+    padding: 0;
+}
+
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+ol,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.App > h2{
+    color: #3E69E4;
+}
+
+.App > ol {
+    color:#99ABE0;
+}
+
+.App > ol > li {
+    border-bottom: 1px solid #E5E5E5;
 }
