@@ -3,32 +3,42 @@ import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import './App.css';
 
+
+let id = 0;
+function idMaker() {
+  id += 1;
+  return id;
+}
+
 class App extends Component {
   constructor() {
     super();
     this.state = {
       newTodo: '',
-      todoList: [
-        {
-          id: 1,
-          title: '第一个待办'
-        },
-        {
-          id: 2,
-          title: '第二个待办'
-        }
-      ]
+      todoList: []
     };
   };
-  addTodo() {
-    console.log('需要添加新的 todo')
+  addTodo(e) {
+    this.state.todoList.push({
+      id: idMaker(),
+      title: e.target.value,
+      states: null,
+      deleted: false
+    })
+    this.setState({
+      newTodo: '',
+      todoList: this.state.todoList
+    })
   }
   render() {
     let todos = this.state.todoList.map((item, index) => {
       return (
-        <li><TodoItem todo={item} /></li>
+        <li>
+          <TodoItem todo={item} />
+        </li>
       );
     })
+    console.log(todos)
     return (
       <div className="App">
         <h2>任务</h2>
