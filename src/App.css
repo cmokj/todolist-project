@@ -16,6 +16,12 @@ li {
 a {
     text-decoration: none;
 }
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+ }
 .App{
     height: 100vh;
     width: 100vw;
@@ -50,7 +56,16 @@ a {
     height: 100%;
 }
 .App > .main > .contentWrapper > .content > .inputWrapper {
-    line-height: 53px;
+    display: flex;
+    height: 52px;
+}
+.App > .main > .contentWrapper > .content > .inputWrapper > input {
+    outline: none;
+    border: 0;
+}
+.App > .main > .contentWrapper > .content > .inputWrapper > input::placeholder {
+    color:#5372CA;
+    font-size: 15px;
 }
 .App > .main > .contentWrapper > .content > ol > li{
     height: 53px;
