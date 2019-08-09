@@ -1,31 +1,63 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-
 *::before,
 *::after {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-
 ol,
 li {
     list-style: none;
 }
-
 a {
     text-decoration: none;
 }
-
-.App > h2{
+.App{
+    height: 100vh;
+    width: 100vw;
+}
+.App > .head > .navbar {
+    height: 48px;
+    width: 100%;
+    background-color: #0078D7;
+}
+.App > .main {
+    height: calc(100% - 48px);
+    display: flex;
+}
+.App > .main > .sidebar {
+    width: 50px;
+    height: 100%;
+    background-color: #F4F4F4;
+}
+.App > .main > .contentWrapper {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    overflow: hidden;
+}
+.App > .main > .contentWrapper > h2{
     color: #3E69E4;
+    line-height: 48px;
 }
-
-.App > ol {
-    color:#99ABE0;
+.App > .main > .contentWrapper > .content {
+    background: linear-gradient(180deg, #fff, #fff 52px, #e5e5e5 52px, #e5e5e5 52px);
+    background-size: 100% 53px;
+    height: 100%;
 }
-
-.App > ol > li {
-    border-bottom: 1px solid #E5E5E5;
+.App > .main > .contentWrapper > .content > .inputWrapper {
+    line-height: 53px;
+}
+.App > .main > .contentWrapper > .content > ol > li{
+    height: 53px;
+}
+.App > .main > .contentWrapper > .content > ol > li > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
 }

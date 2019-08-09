@@ -59,16 +59,26 @@ class App extends Component {
       })
     return (
       <div className="App">
-        <h2>任务</h2>
-        <div className="inputWrapper">
-          <TodoInput
-            content={this.state.newTodo}
-            onSubmit={this.addTodo.bind(this)}
-            onChange={this.changeTitle.bind(this)} />
+        <div className="head">
+          <div className="navbar"></div>
         </div>
-        <ol>
-          {todos}
-        </ol>
+        <div className="main">
+          <div className="sidebar"></div>
+          <div className="contentWrapper">
+            <h2>任务</h2>
+            <div className="content">
+              <ol>
+                {todos}
+              </ol>
+              <div className="inputWrapper">
+                <TodoInput
+                  content={this.state.newTodo}
+                  onSubmit={this.addTodo.bind(this)}
+                  onChange={this.changeTitle.bind(this)} />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
