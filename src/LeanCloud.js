@@ -54,3 +54,8 @@ export function signIn(email, username, password, successFn, errorFn) {
         errorFn.call(null, error);
     });
 }
+
+export function signOut() {
+    AV.User.logOut();
+    return undefined;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog'
+import { signOut } from './LeanCloud'
 import './App.css';
 
 let id = 0;
@@ -45,11 +46,12 @@ class App extends Component {
     todo.deleted = true;
     this.setState(this.state);
   }
-  // onSignUp(user) {
-  //   let stateCopy = JSON.parse(JSON.stringify(this.state));
-  //   stateCopy.user = user;
-  //   this.setState(stateCopy);
-  // }
+  signOut() {
+    signOut();
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    stateCopy.user = {};
+    this.setState(stateCopy);
+  }
   onSignIn(user) {
     let stateCopy = JSON.parse(JSON.stringify(this.state));
     stateCopy.user = user;
@@ -74,6 +76,7 @@ class App extends Component {
         <div className="head">
           <div className="navbar">
             <span>{this.state.user.username || 'username'}</span>
+            <button onClick={this.signOut.bind(this)}>登出</button>
           </div>
         </div>
         <div className="main">
