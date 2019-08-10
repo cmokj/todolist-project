@@ -25,14 +25,9 @@ export default class UserDialog extends Component {
             selected: 'signIn'
         })
     }
-    changeUsername(e) {
+    changeFormData(key, e) {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
-        stateCopy.formData.username = e.target.value;
-        this.setState(stateCopy);
-    }
-    changePassword(e) {
-        let stateCopy = JSON.parse(JSON.stringify(this.state));
-        stateCopy.formData.password = e.target.value;
+        stateCopy.formData[key] = e.target.value;
         this.setState(stateCopy);
     }
     render() {
@@ -49,12 +44,11 @@ export default class UserDialog extends Component {
                         {this.state.selected === 'signIn' ?
                             <SignInForm onChange={this.ToSignUp.bind(this)}
                                 formData={this.state.formData}
-                                changeUsername={this.changeUsername.bind(this)}
-                                changePassword={this.changePassword.bind(this)} />
+                                changeFormData={this.changeFormData.bind(this)}
+                            />
                             : <SignUpForm onChange={this.ToSignIn.bind(this)}
                                 formData={this.state.formData}
-                                changeUsername={this.changeUsername.bind(this)}
-                                changePassword={this.changePassword.bind(this)}
+                                changeFormData={this.changeFormData.bind(this)}
                             />}
                     </div>
                 </div>
