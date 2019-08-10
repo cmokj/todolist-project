@@ -9,11 +9,10 @@ export default class SignUpForm extends Component {
         e.preventDefault();
         let { username, password, email } = this.props.formData;
         let success = (user) => {
-            console.log(user.attributes);
-            this.props.onSignUp.call(null, user.attributes);
+            // this.props.onSignUp.call(null, user.attributes);
         }
         let error = (error) => {
-            console.log(error)
+            alert(error);
         }
         signUp(email, username, password, success, error);
     }

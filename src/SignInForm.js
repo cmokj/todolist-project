@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
+import { signIn } from './LeanCloud'
 import { directive } from '@babel/types';
 
 export default class SignInForm extends Component {
     clickButton() {
         this.props.onChange.call();
+    }
+    signIn(e) {
+        e.preventDefault();
+        let { username, password, email } = this.props.formData;
+        let success = (user) => {
+            this.props.onSignIn.call(null, user);
+        }
+        let error = (error) => {
+            alert(error);
+        }
+        signIn(email, username, password, success, error);
     }
     render() {
         return (
@@ -13,19 +25,20 @@ export default class SignInForm extends Component {
                         <span>欢迎回来</span>
                     </div>
                     <div className="row">
-                        <input type="text" placeholder="邮箱登录"
-                            value={this.props.formData.email}
-                            changeFormData={this.props.changeFormData.bind(null, this)}
+                        <input type="text" placeholder="用户名"
+                            value={this.props.formData.username}
+                            onChange={this.props.changeFormData.bind(null, 'username')}
                         />
                     </div>
                     <div className="row">
                         <input type="password" placeholder="登录密码"
                             value={this.props.formData.password}
-                            changeFormData={this.props.changeFormData.bind(null, 'password')}
+                            onChange={this.props.changeFormData.bind(null, 'password')}
                         />
                     </div>
                     <div className="signInOrSignUp">
-                        <button type="submit">登录</button>
+                        <button type="submit"
+                            onClick={this.signIn.bind(this)}>登录</button>
                         <button onClick={this.clickButton.bind(this)}>注册</button>
                         <a href="#">忘记密码？</a>
                     </div>

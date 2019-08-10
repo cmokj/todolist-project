@@ -45,9 +45,15 @@ class App extends Component {
     todo.deleted = true;
     this.setState(this.state);
   }
-  onSignUp(user) {
+  // onSignUp(user) {
+  //   let stateCopy = JSON.parse(JSON.stringify(this.state));
+  //   stateCopy.user = user;
+  //   this.setState(stateCopy);
+  // }
+  onSignIn(user) {
     let stateCopy = JSON.parse(JSON.stringify(this.state));
     stateCopy.user = user;
+    console.log(user)
     this.setState(stateCopy);
   }
   render() {
@@ -87,7 +93,10 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <UserDialog onSignUp={this.onSignUp.bind(this)} />
+        <UserDialog
+          // onSignUp={this.onSignUp.bind(this)}
+          onSignIn={this.onSignIn.bind(this)}
+        />
       </div>
     );
   }

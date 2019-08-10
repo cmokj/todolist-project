@@ -43,14 +43,16 @@ export default class UserDialog extends Component {
                     </div>
                     <div className="panes">
                         {this.state.selected === 'signIn' ?
-                            <SignInForm onChange={this.ToSignUp.bind(this)}
+                            <SignInForm
+                                onChange={this.ToSignUp.bind(this)}
                                 formData={this.state.formData}
                                 changeFormData={this.changeFormData.bind(this)}
+                                onSignIn={this.props.onSignIn.bind(this)}
                             />
                             : <SignUpForm onChange={this.ToSignIn.bind(this)}
                                 formData={this.state.formData}
                                 changeFormData={this.changeFormData.bind(this)}
-                                onSignUp={this.props.onSignUp.bind(this)}
+                            // onSignUp={this.props.onSignUp.bind(this)}
                             />}
                     </div>
                 </div>
