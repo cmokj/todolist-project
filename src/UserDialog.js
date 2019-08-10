@@ -10,9 +10,14 @@ export default class UserDialog extends Component {
             selected: 'signIn'
         }
     }
-    changeSelected() {
+    ToSignUp() {
         this.setState({
             selected: 'signUp'
+        })
+    }
+    ToSignIn() {
+        this.setState({
+            selected: 'signIn'
         })
     }
     render() {
@@ -27,7 +32,7 @@ export default class UserDialog extends Component {
                     </div>
                     <div className="panes">
                         {this.state.selected === 'signIn' ?
-                            <SignInForm onChange={this.state.changeSelected} /> : <SignUpForm />}
+                            <SignInForm onChange={this.ToSignUp.bind(this)} /> : <SignUpForm onChange={this.ToSignIn.bind(this)} />}
                     </div>
                 </div>
             </div >
