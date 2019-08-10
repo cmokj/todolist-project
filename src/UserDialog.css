@@ -18,10 +18,10 @@
 .UserDialog-Wrapper > .UserDialog > .title > h1 {
     font-weight: 300;
 }
-.UserDialog-Wrapper > .UserDialog > .welcome {
+.UserDialog-Wrapper > .UserDialog > .panes > .signIn > .welcome {
     margin: 30px;
 }
-.UserDialog-Wrapper > .UserDialog > .welcome > span {
+.UserDialog-Wrapper > .UserDialog > .panes > .welcome > span {
     font-size: 16px;
     color: #666;
 }

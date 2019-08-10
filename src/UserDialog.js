@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
+import SignInForm from './SignInForm'
+import SignUpForm from './SignUpForm'
 import './UserDialog.css'
 
 export default class UserDialog extends Component {
+    constructor() {
+        super();
+        this.state = {
+            selected: 'signIn'
+        }
+    }
     render() {
         return (
             <div className="UserDialog-Wrapper">
@@ -12,32 +20,9 @@ export default class UserDialog extends Component {
                     <div className="title">
                         <h1>Microsoft To-Do</h1>
                     </div>
-                    <div className="welcome">
-                        <span>欢迎回来</span>
-                    </div>
                     <div className="panes">
-                        <form className="signIn">
-                            <div className="row">
-                                <input type="text" placeholder="邮箱登录" />
-                            </div>
-                            <div className="row">
-                                <input type="password" placeholder="登录密码" />
-                            </div>
-                            <div className="signInOrSignUp">
-                                <button type="submit">登录</button>
-                                <button>注册</button>
-                                <a href="#">忘记密码？</a>
-                            </div>
-                        </form>
-                        <form className="signUp">
-                            <div className="row">
-                                <input type="text" placeholder="someone@example.com" />
-                            </div>
-                            <div className="row">
-                                <input type="password" placeholder="区分大小写" />
-                            </div>
-                            <button type="submit">注册</button>
-                        </form>
+                        <SignInForm />
+                        <SignUpForm />
                     </div>
                 </div>
             </div >
