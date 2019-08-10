@@ -50,7 +50,7 @@ export default class SignUpForm extends Component {
                     </div>
                     <button type="submit"
                         onClick={this.signUp.bind(this)}>注册</button>
-                    <a href="#">返回登录</a>
+                    <a href="#" onClick={this.props.returnToSignIn.bind(this)}>返回登录</a>
                 </form>
             </div>
         )
