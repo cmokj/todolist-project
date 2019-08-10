@@ -8,6 +8,7 @@ export default class UserDialog extends Component {
         super();
         this.state = {
             selected: 'signIn',
+            user: {},
             formData: {
                 username: '',
                 password: '',
@@ -49,6 +50,7 @@ export default class UserDialog extends Component {
                             : <SignUpForm onChange={this.ToSignIn.bind(this)}
                                 formData={this.state.formData}
                                 changeFormData={this.changeFormData.bind(this)}
+                                onSignUp={this.props.onSignUp.bind(this)}
                             />}
                     </div>
                 </div>

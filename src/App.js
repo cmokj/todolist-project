@@ -14,6 +14,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      user: {},
       newTodo: '',
       todoList: []
     };
@@ -44,6 +45,11 @@ class App extends Component {
     todo.deleted = true;
     this.setState(this.state);
   }
+  onSignUp(user) {
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    stateCopy.user = user;
+    this.setState(stateCopy);
+  }
   render() {
     let todos = this.state.todoList
       .filter((item) => !item.deleted)
@@ -61,7 +67,7 @@ class App extends Component {
       <div className="App">
         <div className="head">
           <div className="navbar">
-            <span>username</span>
+            <span>{this.state.user.username || 'username'}</span>
           </div>
         </div>
         <div className="main">
@@ -81,7 +87,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <UserDialog />
+        <UserDialog onSignUp={this.onSignUp.bind(this)} />
       </div>
     );
   }
