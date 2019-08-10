@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SignInForm from './SignInForm'
-import SignUpForm from './SignUpForm'
-import './UserDialog.css'
+import SignInForm from './SignInForm';
+import SignUpForm from './SignUpForm';
+import './UserDialog.css';
 
 export default class UserDialog extends Component {
     constructor() {
@@ -9,6 +9,11 @@ export default class UserDialog extends Component {
         this.state = {
             selected: 'signIn'
         }
+    }
+    changeSelected() {
+        this.setState({
+            selected: 'signUp'
+        })
     }
     render() {
         return (
@@ -21,8 +26,8 @@ export default class UserDialog extends Component {
                         <h1>Microsoft To-Do</h1>
                     </div>
                     <div className="panes">
-                        <SignInForm />
-                        <SignUpForm />
+                        {this.state.selected === 'signIn' ?
+                            <SignInForm onChange={this.state.changeSelected} /> : <SignUpForm />}
                     </div>
                 </div>
             </div >
