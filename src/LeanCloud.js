@@ -47,8 +47,8 @@ export function signUp(email, username, password, successFn, errorFn) {
 export function signIn(email, username, password, successFn, errorFn) {
     AV.User.logIn(username, password).then(function (loginedUser) {
         // 登录成功
-        let user = getUserFromAVUser(loginedUser);
-        successFn.call(null, loginedUser.attributes);
+        // let user = getUserFromAVUser(loginedUser);
+        successFn.call(null, loginedUser);
     }, function (error) {
         // 登录失败（可能是密码错误）
         errorFn.call(null, error);

@@ -53,7 +53,7 @@ class App extends Component {
   onSignIn(user) {
     let stateCopy = JSON.parse(JSON.stringify(this.state));
     stateCopy.user = user;
-    console.log(user)
+    stateCopy.user.username = user.attributes.username;
     this.setState(stateCopy);
   }
   render() {
@@ -93,10 +93,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <UserDialog
-          // onSignUp={this.onSignUp.bind(this)}
-          onSignIn={this.onSignIn.bind(this)}
-        />
+        {this.state.user.id ? null : <UserDialog onSignIn={this.onSignIn.bind(this)} />}
       </div>
     );
   }
