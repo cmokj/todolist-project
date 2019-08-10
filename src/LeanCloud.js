@@ -44,7 +44,7 @@ export function signUp(email, username, password, successFn, errorFn) {
     return undefined;
 }
 
-export function signIn(email, username, password, successFn, errorFn) {
+export function signIn(username, password, successFn, errorFn) {
     AV.User.logIn(username, password).then(function (loginedUser) {
         // 登录成功
         // let user = getUserFromAVUser(loginedUser);
@@ -58,4 +58,13 @@ export function signIn(email, username, password, successFn, errorFn) {
 export function signOut() {
     AV.User.logOut();
     return undefined;
+}
+
+export function sendPasswordResetEmail(email, successFn, errorFn) {
+    AV.User.requestPasswordReset(email).then(function (success) {
+        alert('发送成功，请查看邮件并重置密码。')
+        successFn.call();
+    }, function (error) {
+        alert(error);
+    })
 }
