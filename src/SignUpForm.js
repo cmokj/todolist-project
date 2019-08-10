@@ -12,7 +12,14 @@ export default class SignUpForm extends Component {
             // this.props.onSignUp.call(null, user.attributes);
         }
         let error = (error) => {
-            alert(error);
+            switch (error.code) {
+                case 202:
+                    alert('用户名已被占用！');
+                    break;
+                default:
+                    alert(error);
+                    break;
+            }
         }
         signUp(email, username, password, success, error);
     }
