@@ -60,7 +60,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="head">
-          <div className="navbar"></div>
+          <div className="navbar">
+            <span>username</span>
+          </div>
         </div>
         <div className="main">
           <div className="sidebar"></div>

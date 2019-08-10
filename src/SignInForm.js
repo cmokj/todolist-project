@@ -13,10 +13,13 @@ export default class SignInForm extends Component {
                         <span>欢迎回来</span>
                     </div>
                     <div className="row">
-                        <input type="text" placeholder="邮箱登录" />
+                        <input type="text" placeholder="邮箱登录"
+                            formData={this.props.formData.email} />
                     </div>
                     <div className="row">
-                        <input type="password" placeholder="登录密码" />
+                        <input type="password" placeholder="登录密码"
+                            formData={this.props.formData.password}
+                            changePassword={this.props.changePassword.bind(this)} />
                     </div>
                     <div className="signInOrSignUp">
                         <button type="submit">登录</button>
