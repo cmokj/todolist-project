@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog'
-import { signOut, TodoModel } from './LeanCloud'
+import { getCurrentUser, signOut, TodoModel } from './LeanCloud'
 import './App.css';
 
 class App extends Component {
@@ -12,7 +12,15 @@ class App extends Component {
       user: {},
       newTodo: '',
       todoList: []
-    };
+    }
+    let user = getCurrentUser();
+    if (user) {
+      TodoModel.getByUser(user, (todos) => {
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        stateCopy.todoList = todos;
+        this.setState(stateCopy);
+      })
+    }
   };
   addTodo(e) {
     let newTodo = {
