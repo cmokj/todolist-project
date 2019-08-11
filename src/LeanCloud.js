@@ -53,7 +53,7 @@ export function signIn(email, username, password, successFn, errorFn) {
     });
 }
 
-export function signOut() {
+export function SignOut() {
     AV.User.logOut();
     return undefined;
 }
@@ -68,9 +68,9 @@ export function sendPasswordResetEmail(email, successFn, errorFn) {
 }
 
 export function getCurrentUser() {
-    let user = AV.User.current;
+    let user = AV.User.current();
     if (user) {
-        return getUserFromAVUser;
+        return getUserFromAVUser(user);
     } else {
         return null;
     }
