@@ -46,16 +46,16 @@ class App extends Component {
     todo.deleted = true;
     this.setState(this.state);
   }
-  signOut() {
-    signOut();
-    let stateCopy = JSON.parse(JSON.stringify(this.state));
-    stateCopy.user = {};
-    this.setState(stateCopy);
-  }
   onSignIn(user) {
     let stateCopy = JSON.parse(JSON.stringify(this.state));
     stateCopy.user = user;
     stateCopy.user.username = user.attributes.username;
+    this.setState(stateCopy);
+  }
+  signOut() {
+    signOut();
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    stateCopy.user = {};
     this.setState(stateCopy);
   }
   render() {

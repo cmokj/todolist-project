@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import AV from 'leancloud-storage';
 
 var { Query, User } = AV;
@@ -44,7 +43,7 @@ export function signUp(email, username, password, successFn, errorFn) {
     return undefined;
 }
 
-export function signIn(username, password, successFn, errorFn) {
+export function signIn(email, username, password, successFn, errorFn) {
     AV.User.logIn(username, password).then(function (loginedUser) {
         // 登录成功
         // let user = getUserFromAVUser(loginedUser);
