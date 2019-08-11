@@ -96,7 +96,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        {this.state.user.id ? null : <UserDialog onSignIn={this.onSignIn.bind(this)} />}
+        {this.state.user.id ? <UserDialog onSignIn={this.onSignIn.bind(this)} /> : null}
       </div>
     );
   }
