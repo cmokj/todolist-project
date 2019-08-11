@@ -2,14 +2,8 @@ import React, { Component } from 'react';
 import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog'
-import { signOut } from './LeanCloud'
+import { signOut, TodoModel } from './LeanCloud'
 import './App.css';
-
-let id = 0;
-function idMaker() {
-  id += 1;
-  return id;
-}
 
 class App extends Component {
   constructor() {
@@ -21,15 +15,20 @@ class App extends Component {
     };
   };
   addTodo(e) {
-    this.state.todoList.push({
-      id: idMaker(),
+    let newTodo = {
       title: e.target.value,
-      states: null,
+      status: null,
       deleted: false
-    })
-    this.setState({
-      newTodo: '',
-      todoList: this.state.todoList
+    }
+    TodoModel.create(newTodo, (id) => {
+      newTodo.id = id;
+      this.state.todoList.push(newTodo);
+      this.setState({
+        newTodo: '',
+        todoList: this.state.todoList
+      })
+    }, (error) => {
+      alert(error);
     })
   }
   changeTitle(e) {
@@ -96,7 +95,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        {this.state.user.id ? <UserDialog onSignIn={this.onSignIn.bind(this)} /> : null}
+        {this.state.user.id ? null : <UserDialog onSignIn={this.onSignIn.bind(this)} />}
       </div>
     );
   }
