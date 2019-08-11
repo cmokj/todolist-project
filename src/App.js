@@ -7,12 +7,6 @@ import './App.css';
 
 class App extends Component {
   constructor() {
-    super();
-    this.state = {
-      user: getCurrentUser() || {},
-      newTodo: '',
-      todoList: []
-    }
     let user = getCurrentUser();
     if (user) {
       TodoModel.getByUser(user, (todos) => {
@@ -20,6 +14,12 @@ class App extends Component {
         stateCopy.todoList = todos;
         this.setState(stateCopy);
       })
+    }
+    super();
+    this.state = {
+      user: getCurrentUser() || {},
+      newTodo: '',
+      todoList: []
     }
   };
   addTodo(e) {
@@ -62,10 +62,15 @@ class App extends Component {
     })
   }
   onSignIn(user) {
-    let stateCopy = JSON.parse(JSON.stringify(this.state));
-    stateCopy.user = user;
-    stateCopy.user.username = user.attributes.username;
-    this.setState(stateCopy);
+    if (user) {
+      TodoModel.getByUser(user, (todos) => {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.todoList = todos
+        stateCopy.user = user;
+        stateCopy.user.username = user.attributes.username;
+        this.setState(stateCopy)
+      })
+    }
   }
   signOut() {
     SignOut();
