@@ -25,7 +25,7 @@ class App extends Component {
   addTodo(e) {
     let newTodo = {
       title: e.target.value,
-      status: null,
+      status: '',
       deleted: false
     }
     TodoModel.create(newTodo, (id) => {
@@ -46,12 +46,20 @@ class App extends Component {
     })
   }
   toggle(e, todo) {
+    let oldStatus = todo.states;
     todo.status = todo.status === 'completed' ? '' : 'completed';
-    this.setState(this.state);
+    TodoModel.update(todo, () => {
+      this.setState(this.state);
+    }, (error => {
+      todo.status = oldStatus;
+      this.setState(this.state);
+    }))
   }
   delete(e, todo) {
-    todo.deleted = true;
-    this.setState(this.state);
+    TodoModel.destroy(todo.id, () => {
+      todo.delete = true;
+      this.setState(this.state);
+    })
   }
   onSignIn(user) {
     let stateCopy = JSON.parse(JSON.stringify(this.state));
@@ -64,6 +72,7 @@ class App extends Component {
     let stateCopy = JSON.parse(JSON.stringify(this.state));
     stateCopy.user = {};
     this.setState(stateCopy);
+    console.log(this.state.user)
   }
   render() {
     let todos = this.state.todoList
