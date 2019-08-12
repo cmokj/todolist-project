@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { signIn } from './LeanCloud'
+import './SignInForm.css'
 
 function clickButton(props, e) {
     props.onChange.call();
@@ -24,7 +25,7 @@ function onSignIn(props, e) {
 }
 export default function (props) {
     return (
-        <div>
+        <div className="signInForm-wrapper">
             <form className="signIn">
                 <div className="welcome">
                     <span>欢迎回来</span>
@@ -42,13 +43,15 @@ export default function (props) {
                     />
                 </div>
                 <div className="row actions">
-                    <button type="submit"
-                        onClick={onSignIn.bind(null, props)}>登录</button>
-                    <button onClick={clickButton.bind(null, props)}>注册</button>
+                    <div className="buttons">
+                        <button type="submit"
+                            onClick={onSignIn.bind(null, props)}>登录</button>
+                        <button onClick={clickButton.bind(null, props)}>注册</button></div>
+
                     <a href="#"
                         onClick={props.showForgotPassword.bind(this)}>忘记密码？</a>
                 </div>
             </form>
-        </div>
+        </div >
     )
 }

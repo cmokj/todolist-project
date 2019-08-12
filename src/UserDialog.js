@@ -53,6 +53,7 @@ export default class UserDialog extends Component {
                             returnToSignInOrSignUp={this.returnToSignInOrSignUp.bind(this)}
                         />}
                 </div>
+                <img src={require('./img/calendar.png')} alt="pic" />
             </div >
         )
     }

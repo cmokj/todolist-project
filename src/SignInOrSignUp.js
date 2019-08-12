@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
+import './SignInOrSignUp.css'
 
 export default class SignInOrSignUp extends Component {
     constructor() {
@@ -28,7 +29,10 @@ export default class SignInOrSignUp extends Component {
         return (
             <div className="signInOrSignUp">
                 <div className="title">
-                    <h1>Microsoft To-Do</h1>
+                    <i className="iconfont icon-logo"></i>
+                    <h1>
+                        <span className="big">T</span>o - <span className="big">D</span>o
+                    </h1>
                 </div>
                 <div className="panes">
                     {this.state.selected === 'signIn' ?

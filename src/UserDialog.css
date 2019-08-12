@@ -4,12 +4,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color:rgba(91, 97, 88, 0.315);
+    background-color:white;
+    display: flex;
+    align-items: center;
+}
+.UserDialog-Wrapper > img {
+    height: 400px;
 }
 .UserDialog-Wrapper > .UserDialog {
+    margin: 150px;
+    margin-right: 200px;
     height: 100%;
-    width: 50%;
-    border: 1px solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,11 +22,4 @@
 }
 .UserDialog-Wrapper > .UserDialog > .title > h1 {
     font-weight: 300;
-}
-.UserDialog-Wrapper > .UserDialog > .panes > .signIn > .welcome {
-    margin: 30px;
-}
-.UserDialog-Wrapper > .UserDialog > .panes > .welcome > span {
-    font-size: 16px;
-    color: #666;
 }

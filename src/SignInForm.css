@@ -1,0 +1,56 @@
+.signIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.signIn > .welcome {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.signIn > .row > input {
+    width: 232px;
+    padding: 10px 40px 10px 10px;
+    border-radius: 3px;
+    margin: 5px;
+    border: 1px solid #97a5b3;
+}
+
+.signIn > .row.actions {
+    width: 232px;
+    position: relative;
+    padding-top: 20px;
+}
+.signIn > .row.actions > .buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.signIn > .row.actions > .buttons > button {
+    background: #5998DE;
+    height: 35px;
+    line-height: 35px;
+    outline: none;
+    width: 49%;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+.signIn > .row.actions > .buttons > button:last-child {
+    background: white;
+    color: black;
+    font-weight: 500;
+}
+.signIn > .row.actions > .buttons > button:hover {
+    background-color: #6ea2ed;
+    cursor: pointer;
+}
+.signIn > .row.actions > .buttons > button:last-child:hover {
+    background: #fff;
+}
+.signIn > .row.actions > a {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+}
