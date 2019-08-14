@@ -39,6 +39,12 @@ class App extends Component {
       alert(error);
     })
   }
+  delete(e, todo) {
+    TodoModel.destroy(todo.id, () => {
+      todo.delete = true;
+      this.setState(this.state);
+    })
+  }
   changeTitle(e) {
     this.setState({
       newTodo: e.target.value,
@@ -54,12 +60,6 @@ class App extends Component {
       todo.status = oldStatus;
       this.setState(this.state);
     }))
-  }
-  delete(e, todo) {
-    TodoModel.destroy(todo.id, () => {
-      todo.delete = true;
-      this.setState(this.state);
-    })
   }
   onSignIn(user) {
     if (user) {
@@ -85,6 +85,7 @@ class App extends Component {
         return (
           <li key={index}>
             <TodoItem
+              todos={this.state.todoList}
               todo={item}
               onToggle={this.toggle.bind(this)}
               onDelete={this.delete.bind(this)} />
@@ -95,8 +96,14 @@ class App extends Component {
       <div className="App">
         <div className="head">
           <div className="navbar">
-            <span>{this.state.user.username || 'username'}</span>
-            <button onClick={this.signOut.bind(this)}>登出</button>
+            <div className="textContent">
+              <span>你好，{this.state.user.username || 'username'}。</span>
+              <span>今天要做些什么呢？</span>
+            </div>
+            <button onClick={this.signOut.bind(this)}
+              title="登出">
+              <i className="iconfont icon-dengchu"></i>
+            </button>
           </div>
         </div>
         <div className="main">
@@ -107,12 +114,10 @@ class App extends Component {
               <ol>
                 {todos}
               </ol>
-              <div className="inputWrapper">
-                <TodoInput
-                  content={this.state.newTodo}
-                  onSubmit={this.addTodo.bind(this)}
-                  onChange={this.changeTitle.bind(this)} />
-              </div>
+              <TodoInput
+                content={this.state.newTodo}
+                onSubmit={this.addTodo.bind(this)}
+                onChange={this.changeTitle.bind(this)} />
             </div>
           </div>
         </div>

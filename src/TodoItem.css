@@ -1,0 +1,56 @@
+.todoItem {
+    display: flex;
+    align-items: center;
+}
+.todoItem > span.true {
+    text-decoration: line-through;
+    color: rgb(156, 154, 154);
+}
+.todoItem > .checkBoxButton {
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    position: relative;
+}
+.todoItem > .checkBoxButton > .icon-circle {
+    font-size: 23px;
+    color: #3E69E4;
+    margin-right: 10px;
+}
+.todoItem > .checkBoxButton > .icon-tick {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    color: #3E69E4;
+    font-size: 10px;
+    display: none;
+}
+.todoItem > .checkBoxButton:hover > .icon-tick {
+    display: inline-block;
+}
+.todoItem > .checkBoxButton > .icon-tickDown {
+    display: none;
+}
+.todoItem > .checkBoxButton  > .icon-tickDown.completed {
+    display: inline-block;
+    color: #3E69E4;
+    font-size: 22px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.todoItem > .checkBoxButton  > #completed + #icon-tick {
+    display: none;
+}
+.deleteButton {
+    border: 0;
+    background-color: transparent;
+    outline: none;
+}
+.deleteButton:hover {
+    cursor: pointer;
+}
+.deleteButton > i {
+    color: rgb(156, 154, 154);
+    font-size: 20px;
+}
