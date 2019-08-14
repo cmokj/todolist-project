@@ -1,0 +1,30 @@
+.signUp > .row > input {
+    width: 232px;
+    padding: 10px 40px 10px 10px;
+    border-radius: 3px;
+    margin: 5px;
+    border: 1px solid #97a5b3;
+}
+.signUp > .row.actions {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.signUp > .row.actions > button {
+    margin-top: 10px;
+    background: #5998DE;
+    height: 35px;
+    line-height: 35px;
+    outline: none;
+    width: 49%;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+.signUp > .row.actions > a {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+    margin-right: 5px;
+}

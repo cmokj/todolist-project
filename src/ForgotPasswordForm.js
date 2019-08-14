@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import './ForgotPasswordForm.css'
 
 export default class ForgotPassword extends Component {
     render() {
         return (
             <div className="forgotPassword">
-                <span>重置密码</span>
-                <form className="forgotPassword"
+                <h1>重置密码</h1>
+                <form className="forgotPasswordForm"
                     onSubmit={this.props.resetPassword.bind(this)}>
                     <div className="row">
                         <input type="text" placeholder="邮箱"
