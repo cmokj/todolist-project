@@ -48,7 +48,10 @@
 .signIn > .row.actions > .buttons > button:last-child:hover {
     background: #fff;
 }
-.signIn > .row.actions > a {
+.signIn > .row.actions > button:last-child {
+    border: 0;
+    outline: none;
+    cursor: pointer;
     position: absolute;
     right: 0;
     top: 0;

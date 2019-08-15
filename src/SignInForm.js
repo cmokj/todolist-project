@@ -48,8 +48,7 @@ export default function (props) {
                             onClick={onSignIn.bind(null, props)}>登录</button>
                         <button onClick={clickButton.bind(null, props)}>注册</button></div>
 
-                    <a href="#"
-                        onClick={props.showForgotPassword.bind(this)}>忘记密码？</a>
+                    <button onClick={props.showForgotPassword.bind(this)}>忘记密码？</button>
                 </div>
             </form>
         </div >
