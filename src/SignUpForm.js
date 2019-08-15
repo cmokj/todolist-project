@@ -40,7 +40,7 @@ export default function (props) {
                 </div>
                 <div className="row">
                     <input type="password"
-                        placeholder="区分大小写"
+                        placeholder="密码（注意区分大小写）"
                         value={props.formData.password}
                         onChange={props.changeFormData.bind(null, 'password')}
                     />
