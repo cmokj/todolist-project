@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { signUp } from './LeanCloud'
 import './SignUpForm.css'
 
@@ -48,7 +48,7 @@ export default function (props) {
                 <div className="row actions">
                     <button type="submit"
                         onClick={onSignUp.bind(null, props)}>注册</button>
-                    <a href="#" onClick={props.returnToSignIn.bind(this)}>返回登录</a>
+                    <button onClick={props.returnToSignIn.bind(this)}>返回登录</button>
                 </div>
             </form>
         </div>

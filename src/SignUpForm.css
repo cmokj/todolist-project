@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
 }
-.signUp > .row.actions > button {
+.signUp > .row.actions > button:first-child {
     margin-top: 10px;
     background: #5998DE;
     height: 35px;
@@ -21,10 +21,13 @@
     font-size: 16px;
     font-weight: 600;
 }
-.signUp > .row.actions > a {
+.signUp > .row.actions > button:last-child {
     position: absolute;
     right: 0;
     top: 0;
     font-size: 12px;
     margin-right: 5px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
 }
