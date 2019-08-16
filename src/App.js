@@ -17,6 +17,7 @@ class App extends Component {
       currentPage: 'task'
     }
     let user = getCurrentUser();
+    console.log(user)
     if (user) {
       TodoModel.getByUser(user, (todos) => {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
@@ -163,7 +164,7 @@ class App extends Component {
         <div className="head">
           <div className="navbar">
             <div className="textContent">
-              <span>你好，{this.state.user.username || 'username'}。</span>
+              <span>你好，{this.state.user.id?this.state.user.attributes.username: 'username'}。</span>
               <span>今天要做些什么呢？</span>
             </div>
             <button onClick={this.signOut.bind(this)}

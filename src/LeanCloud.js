@@ -13,7 +13,7 @@ export default AV
 function getUserFromAVUser(AVUser) {
     return {
         id: AVUser.id,
-        ...AVUser.attrubutes
+        ...AVUser
     }
 }
 
@@ -43,11 +43,11 @@ export function signUp(email, username, password, successFn, errorFn) {
 }
 
 export function signIn(email, username, password, successFn, errorFn) {
-    AV.User.become('anmlwi96s381m6ca7o7266pzf').then(function (user) {
-        // 登录成功
-    }, function (error) {
-        // session token 无效
-    });
+    // AV.User.become('anmlwi96s381m6ca7o7266pzf').then(function (user) {
+    //     // 登录成功
+    // }, function (error) {
+    //     // session token 无效
+    // });
     AV.User.logIn(username, password).then(function (loginedUser) {
         // 登录成功
         // let user = getUserFromAVUser(loginedUser);
