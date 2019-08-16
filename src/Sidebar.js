@@ -22,7 +22,7 @@ export default class Sidebar extends Component {
             })
         }
     }
-    changeTitleToTask() {
+    changeTitleToTask(e) {
         this.props.changeTitleToTask.call();
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.taskBgc = 'active';
@@ -30,7 +30,7 @@ export default class Sidebar extends Component {
         stateCopy.doneBgc = '';
         this.setState(stateCopy);
     }
-    changeTitleToImportant() {
+    changeTitleToImportant(e) {
         this.props.changeTitleToImportant.call();
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.taskBgc = '';
@@ -38,7 +38,7 @@ export default class Sidebar extends Component {
         stateCopy.doneBgc = '';
         this.setState(stateCopy);
     }
-    changeTitleToDone() {
+    changeTitleToDone(e) {
         this.props.changeTitleToDone.call();
         let stateCopy = JSON.parse(JSON.stringify(this.state));
         stateCopy.taskBgc = '';

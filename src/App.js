@@ -17,7 +17,6 @@ class App extends Component {
       currentPage: 'task'
     }
     let user = getCurrentUser();
-    console.log(user)
     if (user) {
       TodoModel.getByUser(user, (todos) => {
         let stateCopy = JSON.parse(JSON.stringify(this.state));
@@ -95,22 +94,22 @@ class App extends Component {
     this.setState(stateCopy);
   }
   changeTitleToTask() {
-    let stateCopy = JSON.parse(JSON.stringify(this.state));
-    stateCopy.statusTitle = '任务';
-    stateCopy.currentPage = 'task';
-    this.setState(stateCopy);
+    this.setState({
+      statusTitle: '任务',
+      currentPage: 'task'
+    })
   }
   changeTitleToImportant() {
-    let stateCopy = JSON.parse(JSON.stringify(this.state));
-    stateCopy.statusTitle = '重要';
-    stateCopy.currentPage = 'important';
-    this.setState(stateCopy);
+    this.setState({
+      statusTitle: '重要',
+      currentPage: 'important'
+    })
   }
   changeTitleToDone() {
-    let stateCopy = JSON.parse(JSON.stringify(this.state));
-    stateCopy.statusTitle = '已完成';
-    stateCopy.currentPage = 'done';
-    this.setState(stateCopy);
+    this.setState({
+      statusTitle: '已完成',
+      currentPage: 'done'
+    })
   }
   render() {
     if (this.state.currentPage === 'task') {
