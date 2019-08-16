@@ -1,0 +1,70 @@
+.sidebar-wrapper {
+    width: 50px; /*200px*/
+    height: 100%;
+    background-color: #F4F4F4;
+    padding-top: 33px;
+}
+.sidebar-wrapper.active {
+    width: 200px;
+}
+.sidebar-wrapper > .sidebar {
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-wrapper > .sidebar > button {
+    display: flex;
+    align-items: center;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    padding: 5px 0;
+    cursor: pointer;
+}
+.sidebar-wrapper > .sidebar > button > i {
+    color: #767678;
+    margin-left: 10px;
+    margin-bottom:5px;
+}
+.sidebar-wrapper > .sidebar > button:first-child > i {
+    color: #3E69E4;
+    font-size: 18px;
+    margin-left: 4px;
+    padding: 5px 8px;
+}
+.sidebar-wrapper > .sidebar > button:first-child:hover > i {
+    background-color: #fafafa;
+    box-shadow: 0px 0px 3px 1px rgb(192, 187, 187);
+}
+.sidebar-wrapper > .sidebar > .flagButton.active {
+    background-color: #ededed;
+}
+.sidebar-wrapper > .sidebar > .flagButton > i {
+    font-size: 25px;
+    margin-left: 8px;
+}
+.sidebar-wrapper > .sidebar > .importantButton.active {
+    background-color: #ededed;
+}
+.sidebar-wrapper > .sidebar > .importantButton:hover {
+    background-color: #fafafa;
+}
+.sidebar-wrapper > .sidebar > .importantButton > i {
+    font-size: 20px;
+}
+.sidebar-wrapper > .sidebar > .doneButton.active {
+    background-color: #ededed;
+}
+.sidebar-wrapper > .sidebar > .doneButton:hover {
+    background-color: #fafafa;
+}
+.sidebar-wrapper > .sidebar > .doneButton > i {
+    font-size: 20px;
+}
+.sidebar-wrapper > .sidebar > button > span {
+    font-size: 15px;
+    margin-left: 10px;
+    display: none;
+}
+.sidebar-wrapper > .sidebar > button > span.active {
+    display: inline;
+}

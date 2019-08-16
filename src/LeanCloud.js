@@ -32,7 +32,7 @@ export function signUp(email, username, password, successFn, errorFn) {
     user.signUp().then(function (loginedUser) {
         // 注册成功
         alert('验证码已发送至您的邮箱，请登录邮箱查看并激活。')
-        let user = getUserFromAVUser(loginedUser);
+        // let user = getUserFromAVUser(loginedUser);
         successFn.call(null, loginedUser);
     }, function (error) {
         // 注册失败（通常是因为用户名已被使用）
@@ -43,6 +43,11 @@ export function signUp(email, username, password, successFn, errorFn) {
 }
 
 export function signIn(email, username, password, successFn, errorFn) {
+    AV.User.become('anmlwi96s381m6ca7o7266pzf').then(function (user) {
+        // 登录成功
+    }, function (error) {
+        // session token 无效
+    });
     AV.User.logIn(username, password).then(function (loginedUser) {
         // 登录成功
         // let user = getUserFromAVUser(loginedUser);
@@ -79,7 +84,7 @@ export function getCurrentUser() {
 export const TodoModel = {
     getByUser(user, successFn, errorFn) {
         let query = new AV.Query('Todo');
-        query.equalTo('deleted', false);
+        // query.equalTo('deleted', false);
         query.find().then((response) => {
             let array = response.map((t) => {
                 return { id: t.id, ...t.attributes }
@@ -89,12 +94,13 @@ export const TodoModel = {
             errorFn && errorFn.call(null, error);
         })
     },
-    create({ status, title, deleted }, successFn, errorFn) {
+    create({ status, title, deleted, priority }, successFn, errorFn) {
         let Todo = AV.Object.extend('Todo');
         let todo = new Todo();
         todo.set('title', title);
         todo.set('status', status);
         todo.set('deleted', deleted);
+        todo.set('priority', priority);
 
         let acl = new AV.ACL();
         acl.setPublicReadAccess(false);
@@ -109,11 +115,12 @@ export const TodoModel = {
             errorFn && errorFn.call(null, error);
         });
     },
-    update({ id, title, status, deleted }, successFn, errorFn) {
+    update({ id, title, status, deleted, priority }, successFn, errorFn) {
         let todo = AV.Object.createWithoutData('Todo', id);
         title !== undefined && todo.set('title', title);
         status !== undefined && todo.set('status', status);
         deleted !== undefined && todo.set('deleted', deleted);
+        priority !== undefined && todo.set('priority', priority);
         todo.save().then((response) => {
             successFn && successFn.call(null);
         }, (error) => errorFn && errorFn.call(null, error))

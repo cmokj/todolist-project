@@ -3,10 +3,19 @@ import TodoInput from './TodoInput';
 import TodoItem from './TodoItem';
 import UserDialog from './UserDialog'
 import { getCurrentUser, SignOut, TodoModel } from './LeanCloud'
+import Sidebar from './Sidebar'
 import './App.css';
 
 class App extends Component {
   constructor() {
+    super();
+    this.state = {
+      user: getCurrentUser() || {},
+      newTodo: '',
+      todoList: [],
+      statusTitle: '任务',
+      currentPage: 'task'
+    }
     let user = getCurrentUser();
     if (user) {
       TodoModel.getByUser(user, (todos) => {
@@ -15,18 +24,13 @@ class App extends Component {
         this.setState(stateCopy);
       })
     }
-    super();
-    this.state = {
-      user: getCurrentUser() || {},
-      newTodo: '',
-      todoList: []
-    }
   };
   addTodo(e) {
     let newTodo = {
       title: e.target.value,
       status: '',
-      deleted: false
+      deleted: false,
+      priority: ''
     }
     TodoModel.create(newTodo, (id) => {
       newTodo.id = id;
@@ -40,6 +44,7 @@ class App extends Component {
     })
   }
   delete(e, todo) {
+    todo.deleted = !todo.deleted;
     TodoModel.destroy(todo.id, () => {
       todo.delete = true;
       this.setState(this.state);
@@ -61,6 +66,16 @@ class App extends Component {
       this.setState(this.state);
     }))
   }
+  toImportant(e, todo) {
+    let oldPriority = todo.priority;
+    todo.priority = todo.priority === 'important' ? '' : 'important';
+    TodoModel.update(todo, () => {
+      this.setState(this.state);
+    }, (error => {
+      todo.priority = oldPriority;
+      this.setState(this.state);
+    }))
+  }
   onSignIn(user) {
     if (user) {
       TodoModel.getByUser(user, (todos) => {
@@ -78,20 +93,71 @@ class App extends Component {
     stateCopy.user = {};
     this.setState(stateCopy);
   }
+  changeTitleToTask() {
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    stateCopy.statusTitle = '任务';
+    stateCopy.currentPage = 'task';
+    this.setState(stateCopy);
+  }
+  changeTitleToImportant() {
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    stateCopy.statusTitle = '重要';
+    stateCopy.currentPage = 'important';
+    this.setState(stateCopy);
+  }
+  changeTitleToDone() {
+    let stateCopy = JSON.parse(JSON.stringify(this.state));
+    stateCopy.statusTitle = '已完成';
+    stateCopy.currentPage = 'done';
+    this.setState(stateCopy);
+  }
   render() {
-    let todos = this.state.todoList
-      .filter((item) => !item.deleted)
-      .map((item, index) => {
-        return (
-          <li key={index}>
-            <TodoItem
-              todos={this.state.todoList}
-              todo={item}
-              onToggle={this.toggle.bind(this)}
-              onDelete={this.delete.bind(this)} />
-          </li>
-        );
-      })
+    if (this.state.currentPage === 'task') {
+      var todos = this.state.todoList
+        .filter((item) => !item.deleted)
+        .map((item, index) => {
+          return (
+            <li key={index}>
+              <TodoItem
+                todos={this.state.todoList}
+                todo={item}
+                onToggle={this.toggle.bind(this)}
+                onDelete={this.delete.bind(this)}
+                toImportant={this.toImportant.bind(this)} />
+            </li>
+          );
+        })
+    } else if (this.state.currentPage === 'done') {
+      todos = this.state.todoList
+        .filter((item) => item.deleted)
+        .map((item, index) => {
+          return (
+            <li key={index}>
+              <TodoItem
+                todos={this.state.todoList}
+                todo={item}
+                onToggle={this.toggle.bind(this)}
+                onDelete={this.delete.bind(this)}
+                toImportant={this.toImportant.bind(this)} />
+            </li>
+          );
+        })
+    } else if (this.state.currentPage === 'important') {
+      todos = this.state.todoList
+        .filter((item) => item.priority === 'important')
+        .map((item, index) => {
+          return (
+            <li key={index}>
+              <TodoItem
+                todos={this.state.todoList}
+                todo={item}
+                onToggle={this.toggle.bind(this)}
+                onDelete={this.delete.bind(this)}
+                toImportant={this.toImportant.bind(this)} />
+            </li>
+          );
+        })
+    }
     return (
       <div className="App">
         <div className="head">
@@ -107,9 +173,12 @@ class App extends Component {
           </div>
         </div>
         <div className="main">
-          <div className="sidebar"></div>
+          <Sidebar
+            changeTitleToTask={this.changeTitleToTask.bind(this)}
+            changeTitleToImportant={this.changeTitleToImportant.bind(this)}
+            changeTitleToDone={this.changeTitleToDone.bind(this)} />
           <div className="contentWrapper">
-            <h2>任务</h2>
+            <h2>{this.state.statusTitle}</h2>
             <div className="content">
               <ol>
                 {todos}

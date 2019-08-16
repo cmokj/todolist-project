@@ -8,7 +8,8 @@ export default class TodoItem extends Component {
             class1: 'iconfont',
             class2: 'icon-tickDown',
             class3: `${props.todo.status}`,
-            class4: ''
+            class4: '',
+            class5: `${props.todo.priority}`
         }
     }
     complete(e) {
@@ -18,9 +19,21 @@ export default class TodoItem extends Component {
             this.props.onToggle(e, this.props.todo);
             this.setState(stateCopy);
         } else {
-            this.props.todo.status = '';
             this.props.onToggle(e, this.props.todo);
             stateCopy.class3 = 'completed';
+            this.setState(stateCopy);
+        }
+    }
+    important(e) {
+        let stateCopy = JSON.parse(JSON.stringify(this.state));
+        if (this.props.todo.priority === 'important') {
+            stateCopy.class5 = '';
+            this.props.toImportant(e, this.props.todo);
+            this.setState(stateCopy);
+        } else {
+            this.props.todo.priority = '';
+            this.props.toImportant(e, this.props.todo);
+            stateCopy.class5 = 'important';
             this.setState(stateCopy);
         }
     }
@@ -32,7 +45,7 @@ export default class TodoItem extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="todoItem-wrapper">
                 <div className="todoItem">
                     <button className="checkBoxButton" onClick={this.complete.bind(this)}>
                         <i className="iconfont icon-circle"></i>
@@ -41,9 +54,14 @@ export default class TodoItem extends Component {
                     </button>
                     <span className={`${this.state.class4}`}>{this.props.todo.title}</span>
                 </div>
-                <button className="deleteButton" onClick={this.delete.bind(this)}>
-                    <i className="iconfont icon-trash-gray"></i>
-                </button>
+                <div className="importantOrDeleteButtons">
+                    <button onClick={this.important.bind(this)}>
+                        <i className={`iconfont icon-star ${this.state.class5}`}></i>
+                    </button>
+                    <button onClick={this.delete.bind(this)}>
+                        <i className="iconfont icon-trash-gray"></i>
+                    </button>
+                </div>
             </div>
         )
     }

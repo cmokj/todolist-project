@@ -1,10 +1,9 @@
+.todoItem-wrapper:hover {
+    background-color: #f5f5f5;
+}
 .todoItem {
     display: flex;
     align-items: center;
-}
-.todoItem > span.true {
-    text-decoration: line-through;
-    color: rgb(156, 154, 154);
 }
 .todoItem > .checkBoxButton {
     border: 0;
@@ -42,15 +41,22 @@
 .todoItem > .checkBoxButton  > #completed + #icon-tick {
     display: none;
 }
-.deleteButton {
+.importantOrDeleteButtons > button {
     border: 0;
     background-color: transparent;
     outline: none;
-}
-.deleteButton:hover {
     cursor: pointer;
 }
-.deleteButton > i {
+.importantOrDeleteButtons > button > i {
     color: rgb(156, 154, 154);
     font-size: 20px;
+}
+.importantOrDeleteButtons > button:first-child {
+    margin: 0 10px;
+}
+.importantOrDeleteButtons > button:first-child > i.important {
+    color: red;
+}
+.importantOrDeleteButtons > button:first-child:hover > i {
+    color: red;
 }
